@@ -1,6 +1,7 @@
 require_relative 'timer'
 require 'nokogiri'
 require 'curb'
+require 'curl'
 require 'csv'
 
 class Parser

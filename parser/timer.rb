@@ -1,11 +1,10 @@
 class Timer
   OFFER_TO_USE_TIMER = "DO YOU WANT TO USE A TIMER TO DELAY BETWEEN RECEIVING PAGES?"
-  ABOUT_ADMINISTRATOR = "So as not to attract the attention of the administrator. \n We cares about him :) "
+  ABOUT_ADMINISTRATOR = "So as not to attract the attention of the administrator. \nWe cares about him :) "
   WARNING_ABOUT_TIMER = "WARNING: If you use a timer, this increases the execution time."
-  INSTRUCTION = "Enter Y (yes) or N (no)"
-  ENTER_MIN_DELAY = "Enter minimum value: "
-  ENTER_MAX_DELAY = "Enter maximum value: "
-  @random = 0
+  INSTRUCTION = "Enter Y (yes) or N (no)? \nA delay automatically generated from 0 to your value."
+  ENTER_MAX_DELAY = "Enter maximum time delay: "
+  @max_delay = 0
 
   def message_about_timer
     puts OFFER_TO_USE_TIMER
@@ -35,12 +34,11 @@ class Timer
   def get_range
     begin
       puts ENTER_MAX_DELAY
-      max_delay = gets.chomp
-      check = Regexp.new(/[1-9]/)===(max_delay)
+      @max_delay = gets.chomp
+      check = Regexp.new(/[1-9]{1,2}/)===(@max_delay)
       if check == false
         raise ArgumentError.new
       end
-      @random = rand(max_delay.to_i)
     rescue ArgumentError
       puts "Incorrect value. Try again"
       retry
@@ -48,17 +46,16 @@ class Timer
       puts "Sorry, try again"
       retry
     end
-    puts @random
-    @random
   end
 
   def delay
-    puts "Paused for #{@random} seconds"
-    if @random.nil? == true then
-      @random = 0
+    _random = rand(@max_delay.to_i)
+    puts "Paused for #{_random} seconds"
+    if _random.nil? == true then
+      _random = 0
     else
-    Time.new(@random)
-    sleep(@random)
+    Time.new(_random)
+    sleep(_random)
     end
   end
 
