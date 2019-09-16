@@ -41,7 +41,6 @@ class Parser
       @timer.delay
       get_links(pagination.to_s)
     end
-      getData
     rescue Curl::Err::HostResolutionError
       puts  "Check connection and url ad try again"
     rescue Curl::Err::MalformedURLError
@@ -53,18 +52,17 @@ class Parser
 
   def getData
     begin
-    @links.each do |product|
+    number_of_product = 0
+@links.each do |product|
       @easy.url = product
         @timer.delay
       @easy.perform
       page = Nokogiri::HTML(@easy.body)
       puts "-----------------"
-      number_of_product = 1
+      number_of_product += 1
       puts "    Product number --->  #{number_of_product}"
-      number_of_product +=1
       name = page.xpath(CONDITION_FOR_GET_NAME).text
       puts "Name ---> #{name}"
-
       index = 1
       _image = ""
       page.xpath(CONDITION_FOR_GET_WEIGHT_AND_PRICE).each do |node|
