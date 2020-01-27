@@ -140,9 +140,8 @@
                     <username>tomcat</username>
                     <password>tomcat</password>
                     <server>localServer</server>
-                    <port>8070</port>
-                    <path>/booking</path>
                     <update>true</update>
+                    <path>/booking</path>
                 </configuration>
             </plugin>
         </plugins>

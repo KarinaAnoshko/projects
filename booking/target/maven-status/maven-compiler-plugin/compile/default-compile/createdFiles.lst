@@ -1,0 +1,11 @@
+by/local/entity/Transfer.class
+by/local/entity/City.class
+by/local/entity/AppRole.class
+by/local/entity/Route.class
+by/local/entity/Color.class
+by/local/entity/AppUser.class
+by/local/AppInit.class
+by/local/WebConfig.class
+by/local/entity/CityStop.class
+by/local/entity/Booking.class
+by/local/controller/WelcomeController.class
