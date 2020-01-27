@@ -1,10 +1,13 @@
 by/local/entity/Transfer.class
 by/local/entity/City.class
 by/local/entity/AppRole.class
+by/local/service/TransferService.class
 by/local/entity/Route.class
 by/local/entity/Color.class
 by/local/entity/AppUser.class
+by/local/controller/admin/TransferController.class
 by/local/AppInit.class
+by/local/repository/TransferRepository.class
 by/local/WebConfig.class
 by/local/entity/CityStop.class
 by/local/entity/Booking.class

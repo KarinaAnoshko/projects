@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+    <head th:replace="~{navigationPanel :: head(#{dashboard})}"></head>
+<body>
+    <nav th:replace="~{navigationPanel :: nav}"></nav>
+
+    <form th:action="/addTransfer" th:object="${transfer}" method="post">
+        <input type="text" th:field="*{stateNumber}">
+        <input type="text" th:field="*{numberOfSeats}">
+        <select>
+            <option th:each="color : ${T(by.local.entity.Color).values()}"
+                    th:value="${color}" th:text="${color}"></option>
+        </select>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
