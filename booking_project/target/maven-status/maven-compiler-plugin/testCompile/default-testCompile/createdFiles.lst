@@ -1,0 +1,7 @@
+by/repository/TransferRepositoryTest.class
+by/repository/RouteRepositoryTest.class
+by/repository/TestConfiguration.class
+by/repository/AppUserRepositoryTest.class
+by/repository/BookingRepositoryTest.class
+by/repository/CityRepositoryTest.class
+by/repository/CityStopRepositoryTest.class
