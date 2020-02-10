@@ -5,13 +5,34 @@ import by.local.repository.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransferService {
 
-    @Autowired
     private TransferRepository repository;
+
+
+    @Autowired
+    public TransferService(TransferRepository repository){
+        this.repository = repository;
+    }
 
     public void save(Transfer transfer) {
         repository.saveTransfer(transfer);
     }
+
+    public Transfer findById(String id){
+        return repository.findById(id);
+    }
+
+    public void remove(String id) {
+        repository.removeTransfer(id);
+    }
+
+    public List<Transfer> findAll(){
+        return repository.findAll();
+    }
+
+
 }

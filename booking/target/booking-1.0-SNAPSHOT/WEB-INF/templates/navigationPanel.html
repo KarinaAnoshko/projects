@@ -6,9 +6,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/booking.css}">
 </head>
 <body>
-<nav th:fragment="nav">
-    <div class="topNav">
-        <a class="brand" th:href="@{/}" th:text="#{brand}">BusPro</a>
+    <nav th:fragment="nav">
+        <ul class="navList">
+            <li><a class="brand" th:href="@{/}" th:text="#{brand}">BusPro</a></li>
+            <li><a th:href="@{/booking}" th:text="#{booking}">Booking</a></li>
+            <li><a th:href="@{/routes}" th:text="#{routes}">Routes</a></li>
+            <li><a th:href="@{/cities}" th:text="#{cities}">Cities</a></li>
+        </ul>
         <div class="userBar">
             <a class="userName" th:href="@{/account}">Username</a>
             <ul class="userBar-content">
@@ -17,12 +21,6 @@
                 <li><a th:href="@{/settings}" th:text="#{settings}">Settings</a></li>
             </ul>
         </div>
-    </div>
-    <ul class="navList">
-        <li><a th:href="@{/reservation}" th:text="#{reservation}">Booking</a></li>
-        <li><a th:href="@{/routes}" th:text="#{routes}">Routes</a></li>
-        <li><a th:href="@{/cities}" th:text="#{cities}">Cities</a></li>
-    </ul>
-</nav>
+    </nav>
 </body>
 </html>

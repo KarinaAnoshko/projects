@@ -15,7 +15,7 @@ public class City implements Serializable {
     private static final long serialVersionUID = -5395058674688773589L;
 
     @Id
-    public static final UUID id = UUID.randomUUID();
+    public final UUID id = UUID.randomUUID();
 
     @Column
     private String name;

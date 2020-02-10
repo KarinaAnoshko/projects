@@ -1,65 +1,87 @@
 /* Delete margin, set color and font properties */
-html, body, * {
-    margin: 0;
-    font: 1.2vw arial, sans-serif;
-    color: #4e8098;
-}
-
-/*------ BEGIN TOP AND LEFT NAVIGATION BAR PROPERTIES ------*/
-
-/* Create flex box and set background color */
-
-.topNav {
-    display: flex;
-    justify-content:  space-between;
-    background-color:  #d4f5f5;
-}
-
-/* Set link type block, add padding in top level bar */
-.brand, .userName {
-    display: block;
-    padding: 2vmin;
-    text-decoration: none;
-}
-
-/* Delete margin and padding in the left menu and drop-down lists */
-
-.navList, .userBar-content {
+* {
     margin: 0;
     padding: 0;
+    font: 1.2vw arial, sans-serif;
     list-style: none;
-    background-color: #e4c1f9;
+    text-decoration: none;
+    text-align: center;
 }
 
-/* Align drop-down list to the right side */
-.userBar-content {
-    display: none;
-    position: absolute;
-    right: 0;
-}
+/*------ BEGIN NAVIGATION BAR PROPERTIES ------*/
 
-/* Set width and height left nav bar */
+nav, .navList {
+    display: flex;
+    background-color: #fdbab1;
+}
 
 .navList {
-    max-width: 20vw;
-    min-height: 100vmax;
+    flex-grow: 1;
 }
 
-/* Create flex container for left menu and user dropdown */
 
-li a, .userBar:hover .userBar-content {
+.userBar-content {
+    display: none;
+    background-color: #ffe5d9;
+}
+
+.userBar:hover .userBar-content {
     display: flex;
-    flex-flow: column wrap;
-    text-decoration: none;
-    min-width: 6vw;
-    padding: 1vmin;
+    flex-flow: wrap column;
+    position: absolute;
 }
 
-/* Change color font and background color during hover */
+.navList a, .userBar a {
+    display: block;
+    color: #000;
+    padding: 1vw 2vw;
+}
 
 li a:hover {
-    background-color: #4e8098;
+    background-color: #555;
     color: white;
 }
 
-/*------ END TOP AND LEFT NAVIGATION BAR PROPERTIES ------*/
+/*------ END NAVIGATION BAR PROPERTIES ------*/
+
+/*------ BEGIN FORM PROPERTIES ------*/
+
+form, p {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vw;
+    font-size: 1.2rem;
+}
+
+/*------ END FORM PROPERTIES ------*/
+
+/*------ BEGIN TABLE PROPERTIES ------*/
+
+.fl-table {
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100vmax;
+    max-width: 100vmax;
+}
+
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 1vw;
+}
+
+.fl-table td {
+    border-right: 1px solid #000;
+}
+
+.fl-table thead th {
+    background: #adfef6;
+}
+
+img {
+    max-width: 10vw;
+}
+
+/*------ END TABLE PROPERTIES ------*/

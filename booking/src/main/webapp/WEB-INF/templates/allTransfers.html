@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head th:replace="~{navigationPanel :: head(#{dashboard})}"></head>
+<body>
+<nav th:replace="~{navigationPanel :: nav}"></nav>
+
+<table class="fl-table">
+    <thead>
+        <tr>
+            <th th:text="#{photo}">Photo</th>
+            <th th:text="#{makeAndModel}">Make and model</th>
+            <th th:text="#{vehicleRegistrationNumber}">Vehicle registration number</th>
+            <th th:text="#{numberOfSeats}">Number of seats</th>
+            <th th:text="#{color}">Color</th>
+            <th th:text="#{delete}">Delete</th>
+            <th th:text="#{update}">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="transfer : ${transfers}">
+            <td><img th:src="|@{~/images/}${transfer.imageName}|"/></td>
+            <td><span th:text="${transfer.makeAndModel}">Make and model</span></td>
+            <td><span th:text="${transfer.vehicleRegistrationNumber}">Vehicle registration number</span></td>
+            <td><span th:text="${transfer.numberOfSeats}">Number of seats</span></td>
+            <td><span th:text="${transfer.color}">Color</span></td>
+            <td>
+                <form th:action="@{delete}" method="post">
+                    <input type="hidden" name="id" th:value="${transfer.vehicleRegistrationNumber}" />
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+            <td>
+                <a th:href="@{updateTransfer/__${transfer.vehicleRegistrationNumber}__}" th:text="#{update}">Update</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

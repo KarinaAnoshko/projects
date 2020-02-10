@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
@@ -24,6 +26,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -34,11 +37,17 @@ import java.util.Properties;
 @PropertySource("classpath:hibernate.properties")
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
     private Environment env;
 
-    @Autowired
     private ApplicationContext applicationContext;
+
+    public static final String UPLOAD_DIR = "/WEB-INF/uploads/";
+
+    @Autowired
+    public WebConfig(Environment env, ApplicationContext applicationContext){
+        this.env = env;
+        this.applicationContext = applicationContext;
+    }
 
     /* View and resources part configuration */
 
@@ -102,6 +111,22 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(localeInterceptor());
     }
 
+    /* File upload bean */
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(1000000);
+        multipartResolver.setResolveLazily(true);
+        multipartResolver.setUploadTempDir(fileSystemResource());
+        return multipartResolver;
+    }
+
+    @Bean
+    public FileSystemResource fileSystemResource(){
+        return new FileSystemResource("/var/project/images/");
+    }
+
     /* Data configuration (hibernate) */
 
     @Bean
@@ -124,8 +149,8 @@ public class WebConfig implements WebMvcConfigurer {
 
         localSessionFactoryBean.setDataSource(dataSource);
         localSessionFactoryBean.setHibernateProperties(hibernateProperties());
-        localSessionFactoryBean.setAnnotatedPackages("by/entity");
-        localSessionFactoryBean.setPackagesToScan("by/entity");
+        localSessionFactoryBean.setAnnotatedPackages("by/local/entity");
+        localSessionFactoryBean.setPackagesToScan("by/local/entity");
 
         return localSessionFactoryBean;
     }

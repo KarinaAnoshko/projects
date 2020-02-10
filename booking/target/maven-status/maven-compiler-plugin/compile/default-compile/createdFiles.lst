@@ -1,3 +1,4 @@
+by/local/service/ImageService.class
 by/local/entity/Transfer.class
 by/local/entity/City.class
 by/local/entity/AppRole.class
@@ -10,5 +11,6 @@ by/local/AppInit.class
 by/local/repository/TransferRepository.class
 by/local/WebConfig.class
 by/local/entity/CityStop.class
+by/local/repository/CityRepository.class
 by/local/entity/Booking.class
 by/local/controller/WelcomeController.class

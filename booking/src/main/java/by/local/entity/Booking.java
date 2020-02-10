@@ -14,7 +14,7 @@ public class Booking implements Serializable {
     private static final long serialVersionUID = -6862606964536262566L;
 
     @Id
-    public static final UUID id = UUID.randomUUID();
+    public final UUID id = UUID.randomUUID();
 
     @Column
     private Integer bookingSeat;

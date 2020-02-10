@@ -15,7 +15,7 @@ public class Route implements Serializable {
     private static final long serialVersionUID = -3089230758061448666L;
 
     @Id
-    public static final UUID id = UUID.randomUUID();
+    public final UUID id = UUID.randomUUID();
 
     @Column
     private Date date;

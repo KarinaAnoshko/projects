@@ -4,14 +4,23 @@
 <body>
     <nav th:replace="~{navigationPanel :: nav}"></nav>
 
-    <form th:action="/addTransfer" th:object="${transfer}" method="post">
-        <input type="text" th:field="*{stateNumber}">
+    <h1 th:text="|#{add} #{transfer}|">Add transfer:</h1>
+    <form method="post" id="addTransfer" th:object="${transfer}"  th:formaction="@{/addTransfer}" enctype="multipart/form-data">
+        <p th:text="#{makeAndModel}">Make and model</p>
+        <input type="text" th:field="*{makeAndModel}">
+        <p th:text="#{vehicleRegistrationNumber}">Vehicle Registration Number</p>
+        <input type="text" th:field="*{vehicleRegistrationNumber}">
+        <p th:text="#{numberOfSeats}">Number of seats</p>
         <input type="text" th:field="*{numberOfSeats}">
-        <select>
+        <p th:text="#{color}">Color</p>
+        <select th:field="*{color}">
             <option th:each="color : ${T(by.local.entity.Color).values()}"
                     th:value="${color}" th:text="${color}"></option>
         </select>
-        <input type="submit" value="Submit" />
+        <p th:text="|#{select} #{aFileToUpload}|">Select a file to upload</p>
+        <input type="file" name="file" />
+        <input type="submit" value="Submit" th:value="#{submit}"/>
     </form>
+<!--    <script th:src="@{/js/validateForm.js}"></script>-->
 </body>
 </html>

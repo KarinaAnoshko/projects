@@ -16,13 +16,13 @@ public class AppUser implements Serializable {
     private static final long serialVersionUID = -5997278914885679990L;
 
     @Id
-    private String phoneNumber;
+    private String email;
 
     @Column
     private String password;
 
     @Column
-    private String email;
+    private String phoneNumber;
 
     @Column
     private AppRole role;

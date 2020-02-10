@@ -10,5 +10,7 @@
 /home/karina/projects/booking/src/main/java/by/local/entity/AppUser.java
 /home/karina/projects/booking/src/main/java/by/local/entity/Color.java
 /home/karina/projects/booking/src/main/java/by/local/entity/CityStop.java
+/home/karina/projects/booking/src/main/java/by/local/service/ImageService.java
+/home/karina/projects/booking/src/main/java/by/local/repository/CityRepository.java
 /home/karina/projects/booking/src/main/java/by/local/entity/Transfer.java
 /home/karina/projects/booking/src/main/java/by/local/entity/City.java
