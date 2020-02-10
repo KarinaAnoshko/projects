@@ -30,7 +30,7 @@ public class TransferController {
         return "addTransferForm";
     }
 
-    @PostMapping("/addTransfer")
+    @RequestMapping(value = {"/addTransfer", "/updateTransfer/*"})
     public RedirectView saveTransfer(@ModelAttribute Transfer transfer,
                                      @RequestParam("file") MultipartFile multipartFile) throws IOException {
         imageService.saveImage(multipartFile);
@@ -54,7 +54,7 @@ public class TransferController {
     @GetMapping("/updateTransfer/{id}")
     public String updateTransfer(@PathVariable(name = "id") String id, Model model){
         model.addAttribute("transfer", service.findById(id));
-        return "updateTransferForm";
+        return "addTransferForm";
     }
 
 
