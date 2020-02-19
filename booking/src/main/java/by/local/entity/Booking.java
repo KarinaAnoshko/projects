@@ -1,6 +1,7 @@
 package by.local.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -14,7 +15,10 @@ public class Booking implements Serializable {
     private static final long serialVersionUID = -6862606964536262566L;
 
     @Id
-    public final UUID id = UUID.randomUUID();
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column
     private Integer bookingSeat;
