@@ -27,6 +27,7 @@ public class AppInit implements WebApplicationInitializer {
                 new AnnotationConfigWebApplicationContext();
         dispatcherContext.register(AppInit.class);
 
+
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher =
                 container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
