@@ -42,8 +42,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     private ApplicationContext applicationContext;
 
-    public static final String UPLOAD_DIR = "/WEB-INF/uploads/";
-
     @Autowired
     public WebConfig(Environment env, ApplicationContext applicationContext){
         this.env = env;

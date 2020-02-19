@@ -19,7 +19,7 @@ public class TransferService {
     }
 
     public void save(Transfer transfer) {
-        repository.saveTransfer(transfer);
+        repository.saveEntity(transfer);
     }
 
     public Transfer findById(String id){
@@ -27,7 +27,7 @@ public class TransferService {
     }
 
     public void remove(String id) {
-        repository.removeTransfer(id);
+        repository.removeEntity(id);
     }
 
     public List<Transfer> findAll(){

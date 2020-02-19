@@ -1,10 +1,10 @@
 package by.local.repository;
 
 import by.local.entity.Transfer;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -12,29 +12,43 @@ import java.util.List;
 @Transactional
 public class TransferRepository {
 
-    private SessionFactory factory;
+    private EntityManager manager;
 
-    @Autowired
-    public void setFactory(SessionFactory factory){
-        this.factory = factory;
+    @PersistenceContext
+    public void setManager(EntityManager manager) {
+        this.manager = manager;
     }
 
-    public void saveTransfer(Transfer transfer) {
-        factory.getCurrentSession().saveOrUpdate(transfer);
+
+
+    public void saveEntity(Transfer entity) {
+        manager.persist(entity);
     }
 
-    public Transfer findById(String id){
-        return factory.getCurrentSession().get(Transfer.class, id);
+
+    public void saveAll(List<Transfer> list) {
+        list.forEach(transfer -> manager.persist(transfer));
     }
+
+
+    public Transfer findById(Object id) {
+        return manager.find(Transfer.class, id);
+    }
+
+
+    public Transfer getReference(Object id) {
+        return manager.getReference(Transfer.class, id);
+    }
+
 
     public List<Transfer> findAll(){
-        return factory.getCurrentSession()
-                .createQuery("from Transfer", Transfer.class)
+        return manager.createQuery("from Transfer", Transfer.class)
                 .getResultList();
     }
 
-    public void removeTransfer(String id) {
-        factory.getCurrentSession().delete(findById(id));
+
+    public void removeEntity(Object id) {
+        manager.remove(findById(id));
     }
 
 }

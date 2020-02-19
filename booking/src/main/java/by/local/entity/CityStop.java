@@ -1,11 +1,9 @@
 package by.local.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -16,7 +14,10 @@ public class CityStop implements Serializable {
     private static final long serialVersionUID = 982700570253573211L;
 
     @Id
-    public final UUID id = UUID.randomUUID();
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column
     private String name;
