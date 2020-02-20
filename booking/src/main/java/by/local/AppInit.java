@@ -4,8 +4,10 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
@@ -27,12 +29,20 @@ public class AppInit implements WebApplicationInitializer {
                 new AnnotationConfigWebApplicationContext();
         dispatcherContext.register(AppInit.class);
 
+        // Register and map the filter
+        FilterRegistration.Dynamic filterRegistration = container.addFilter("encodingFilter", encodingFilter());
+        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+
 
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher =
                 container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
+    }
+
+    public CharacterEncodingFilter encodingFilter(){
+       return new CharacterEncodingFilter("UTF-8", true);
     }
 
 
